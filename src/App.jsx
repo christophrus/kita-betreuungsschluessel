@@ -56,22 +56,22 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 p-3 sm:p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white rounded-2xl shadow-2xl p-6 md:p-8 mb-6">
-          <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-2">
-            Kita Betreuungsschlüssel-Rechner
+        <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl p-4 sm:p-6 md:p-8 mb-4 sm:mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-800 mb-1 sm:mb-2 leading-tight">
+            Kita Betreuungs&shy;schlüssel-Rechner
           </h1>
-          <p className="text-center text-gray-600 mb-8">
+          <p className="text-center text-gray-600 text-sm sm:text-base mb-6 sm:mb-8">
             Überprüfung nach §12 SächsKitaG
           </p>
 
           {/* Einrichtungsart */}
-          <div className="mb-6">
-            <label className="block text-sm font-semibold text-gray-700 mb-3">
+          <div className="mb-5 sm:mb-6">
+            <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-2 sm:mb-3">
               Einrichtungsart
             </label>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="flex flex-col sm:grid sm:grid-cols-3 gap-2 sm:gap-3">
               {[
                 { value: 'krippe', label: 'Kinderkrippe', desc: '0-3 Jahre' },
                 { value: 'kindergarten', label: 'Kindergarten', desc: '3-6 Jahre' },
@@ -80,26 +80,26 @@ function App() {
                 <button
                   key={value}
                   onClick={() => setEinrichtungsart(value)}
-                  className={`p-4 rounded-lg border-2 transition-all ${
+                  className={`p-3 sm:p-4 rounded-lg border-2 transition-all text-left sm:text-center ${
                     einrichtungsart === value
                       ? 'border-blue-500 bg-blue-50'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
-                  <div className="font-semibold text-gray-800">{label}</div>
+                  <div className="font-semibold text-gray-800 text-sm sm:text-base">{label}</div>
                   <div className="text-xs text-gray-500">{desc}</div>
                 </button>
               ))}
             </div>
-            <div className="mt-3 text-sm text-gray-600 bg-gray-50 p-3 rounded">
+            <div className="mt-2 sm:mt-3 text-xs sm:text-sm text-gray-600 bg-gray-50 p-2 sm:p-3 rounded">
               Gesetzlicher Schlüssel: 1 VZÄ (40h) für {BETREUUNGSSCHLUESSEL[einrichtungsart]} Kinder
             </div>
           </div>
 
           {/* Eingabefelder */}
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
+          <div className="flex flex-col sm:grid sm:grid-cols-2 gap-4 sm:gap-6 mb-5 sm:mb-6">
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-2">
                 Wochenstunden (gesamt)
               </label>
               <input
@@ -108,7 +108,7 @@ function App() {
                 value={wochenstunden}
                 onChange={(e) => setWochenstunden(e.target.value)}
                 placeholder="z.B. 90"
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none text-sm sm:text-base"
               />
               <p className="mt-1 text-xs text-gray-500">
                 Summe aller Wochenstunden des pädagogischen Personals
@@ -116,7 +116,7 @@ function App() {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-2">
                 Anzahl Kinder
               </label>
               <input
@@ -125,7 +125,7 @@ function App() {
                 value={anzahlKinder}
                 onChange={(e) => setAnzahlKinder(e.target.value)}
                 placeholder="z.B. 11.5"
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none text-sm sm:text-base"
               />
               <p className="mt-1 text-xs text-gray-500">
                 Anzahl der zu betreuenden Kinder
@@ -136,7 +136,7 @@ function App() {
           {/* Berechnen Button */}
           <button
             onClick={berechneBetreuungsschluessel}
-            className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-4 rounded-lg hover:shadow-lg transition-all"
+            className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 sm:py-4 rounded-lg hover:shadow-lg transition-all text-sm sm:text-base"
           >
             Betreuungsschlüssel berechnen
           </button>
@@ -144,22 +144,22 @@ function App() {
 
         {/* Ergebnis */}
         {ergebnis && (
-          <div className="bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl p-4 sm:p-6 md:p-8">
             {ergebnis.fehler ? (
-              <div className="text-center text-red-600 font-semibold">
+              <div className="text-center text-red-600 font-semibold text-sm sm:text-base">
                 {ergebnis.fehler}
               </div>
             ) : (
               <>
-                <div className={`text-center p-6 rounded-xl mb-6 ${
+                <div className={`text-center p-4 sm:p-6 rounded-xl mb-4 sm:mb-6 ${
                   ergebnis.eingehalten 
                     ? 'bg-green-100 border-2 border-green-500'
                     : 'bg-red-100 border-2 border-red-500'
                 }`}>
-                  <div className="text-5xl mb-2">
+                  <div className="text-4xl sm:text-5xl mb-2">
                     {ergebnis.eingehalten ? '✅' : '❌'}
                   </div>
-                  <div className={`text-2xl font-bold ${
+                  <div className={`text-lg sm:text-2xl font-bold ${
                     ergebnis.eingehalten ? 'text-green-700' : 'text-red-700'
                   }`}>
                     {ergebnis.eingehalten 
@@ -169,76 +169,76 @@ function App() {
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="flex flex-col sm:grid sm:grid-cols-2 gap-4 sm:gap-6">
                   {/* Linke Spalte */}
-                  <div className="space-y-4">
-                    <h3 className="font-bold text-lg text-gray-800 mb-3">Ihre Angaben</h3>
+                  <div className="space-y-3 sm:space-y-4">
+                    <h3 className="font-bold text-base sm:text-lg text-gray-800 mb-2 sm:mb-3">Ihre Angaben</h3>
                     
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <div className="text-sm text-gray-600">Wochenstunden</div>
-                      <div className="text-2xl font-bold text-gray-800">{wochenstunden} h</div>
+                    <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
+                      <div className="text-xs sm:text-sm text-gray-600">Wochenstunden</div>
+                      <div className="text-xl sm:text-2xl font-bold text-gray-800">{wochenstunden} h</div>
                     </div>
 
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <div className="text-sm text-gray-600">Vollzeitäquivalente</div>
-                      <div className="text-2xl font-bold text-gray-800">{ergebnis.vollzeitaequivalente} VZÄ</div>
+                    <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
+                      <div className="text-xs sm:text-sm text-gray-600">Vollzeitäquivalente</div>
+                      <div className="text-xl sm:text-2xl font-bold text-gray-800">{ergebnis.vollzeitaequivalente} VZÄ</div>
                     </div>
 
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <div className="text-sm text-gray-600">Anzahl Kinder</div>
-                      <div className="text-2xl font-bold text-gray-800">{anzahlKinder}</div>
+                    <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
+                      <div className="text-xs sm:text-sm text-gray-600">Anzahl Kinder</div>
+                      <div className="text-xl sm:text-2xl font-bold text-gray-800">{anzahlKinder}</div>
                     </div>
 
-                    <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                      <div className="text-sm text-blue-700">Tatsächlicher Schlüssel</div>
-                      <div className="text-2xl font-bold text-blue-800">
+                    <div className="bg-blue-50 p-3 sm:p-4 rounded-lg border border-blue-200">
+                      <div className="text-xs sm:text-sm text-blue-700">Tatsächlicher Schlüssel</div>
+                      <div className="text-xl sm:text-2xl font-bold text-blue-800">
                         1 VZÄ : {ergebnis.tatsaecklicherSchluessel} Kinder
                       </div>
                     </div>
                   </div>
 
                   {/* Rechte Spalte */}
-                  <div className="space-y-4">
-                    <h3 className="font-bold text-lg text-gray-800 mb-3">Gesetzliche Vorgaben</h3>
+                  <div className="space-y-3 sm:space-y-4">
+                    <h3 className="font-bold text-base sm:text-lg text-gray-800 mb-2 sm:mb-3">Gesetzliche Vorgaben</h3>
                     
-                    <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
-                      <div className="text-sm text-purple-700">Gesetzlicher Schlüssel</div>
-                      <div className="text-2xl font-bold text-purple-800">
+                    <div className="bg-purple-50 p-3 sm:p-4 rounded-lg border border-purple-200">
+                      <div className="text-xs sm:text-sm text-purple-700">Gesetzlicher Schlüssel</div>
+                      <div className="text-xl sm:text-2xl font-bold text-purple-800">
                         1 VZÄ : {ergebnis.gesetzlicherSchluessel} Kinder
                       </div>
                     </div>
 
-                    <div className={`p-4 rounded-lg ${
+                    <div className={`p-3 sm:p-4 rounded-lg ${
                       ergebnis.eingehalten ? 'bg-green-50' : 'bg-red-50'
                     }`}>
-                      <div className="text-sm text-gray-600">Max. Kinder bei {wochenstunden}h</div>
-                      <div className={`text-2xl font-bold ${
+                      <div className="text-xs sm:text-sm text-gray-600">Max. Kinder bei {wochenstunden}h</div>
+                      <div className={`text-xl sm:text-2xl font-bold ${
                         ergebnis.eingehalten ? 'text-green-700' : 'text-red-700'
                       }`}>
                         {ergebnis.maxKinder} Kinder
                       </div>
                     </div>
 
-                    <div className={`p-4 rounded-lg ${
+                    <div className={`p-3 sm:p-4 rounded-lg ${
                       ergebnis.eingehalten ? 'bg-green-50' : 'bg-red-50'
                     }`}>
-                      <div className="text-sm text-gray-600">
+                      <div className="text-xs sm:text-sm text-gray-600">
                         {parseFloat(ergebnis.differenz) > 0 ? 'Kinder zu viel' : 'Puffer'}
                       </div>
-                      <div className={`text-2xl font-bold ${
+                      <div className={`text-xl sm:text-2xl font-bold ${
                         ergebnis.eingehalten ? 'text-green-700' : 'text-red-700'
                       }`}>
                         {ergebnis.differenz} Kinder
                       </div>
                     </div>
 
-                    <div className={`p-4 rounded-lg ${
+                    <div className={`p-3 sm:p-4 rounded-lg ${
                       ergebnis.eingehalten ? 'bg-green-50' : 'bg-red-50'
                     }`}>
-                      <div className="text-sm text-gray-600">
+                      <div className="text-xs sm:text-sm text-gray-600">
                         {parseFloat(ergebnis.stundendifferenz) > 0 ? 'Fehlende Stunden' : 'Stunden-Puffer'}
                       </div>
-                      <div className={`text-2xl font-bold ${
+                      <div className={`text-xl sm:text-2xl font-bold ${
                         ergebnis.eingehalten ? 'text-green-700' : 'text-red-700'
                       }`}>
                         {ergebnis.stundendifferenz} h/Woche
@@ -248,9 +248,9 @@ function App() {
                 </div>
 
                 {!ergebnis.eingehalten && (
-                  <div className="mt-6 bg-orange-50 border border-orange-200 p-4 rounded-lg">
-                    <div className="font-semibold text-orange-800 mb-2">⚠️ Empfehlung</div>
-                    <div className="text-sm text-orange-700">
+                  <div className="mt-4 sm:mt-6 bg-orange-50 border border-orange-200 p-3 sm:p-4 rounded-lg">
+                    <div className="font-semibold text-orange-800 mb-2 text-sm sm:text-base">⚠️ Empfehlung</div>
+                    <div className="text-xs sm:text-sm text-orange-700">
                       Für {anzahlKinder} Kinder werden mindestens <strong>{ergebnis.benoetigteStunden} Wochenstunden</strong> benötigt, 
                       um den gesetzlichen Betreuungsschlüssel einzuhalten.
                     </div>
@@ -262,7 +262,7 @@ function App() {
         )}
 
         {/* Hinweis */}
-        <div className="mt-6 text-center text-white text-sm">
+        <div className="mt-4 sm:mt-6 text-center text-white text-xs sm:text-sm px-2">
           <p>Gesetzliche Grundlage: §12 SächsKitaG</p>
           <p className="mt-1 text-xs opacity-80">
             Hinweis: Mittelbare pädagogische Tätigkeiten und Leitungszeit werden in dieser Berechnung noch nicht berücksichtigt
